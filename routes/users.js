@@ -54,9 +54,11 @@ router.post(
         }
       };
 
+      const jwtSecret = process.env.jwtSecret || config.get('jwtSecret');
+
       jwt.sign(
         payload,
-        config.get('jwtSecret'),
+        jwtSecret,
         {
           expiresIn: 3600
         },
