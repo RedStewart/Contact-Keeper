@@ -1,9 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react';
 import ContactContext from '../../context/contact/contactContext';
+import AlertState from '../../context/alert/alertContext';
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
-  const { addContact, updateContact, current, clearCurrent } = contactContext;
+  const alertContext = useContext(AlertState);
+
+  const {
+    addContact,
+    updateContact,
+    current,
+    clearCurrent,
+    clearFilter
+  } = contactContext;
+
+  const { setAlert } = alertContext;
 
   useEffect(() => {
     if (current !== null) {
@@ -37,11 +48,11 @@ const ContactForm = () => {
       addContact(contact);
     } else {
       updateContact(contact);
+      setAlert('Updated Successfully!', 'success', 3000);
     }
 
-    // passing in the components contact state (all the form fields)
-    // and calling the add contact action in the ContactContext file
     clearAll();
+    clearFilter();
   };
 
   const clearAll = () => {

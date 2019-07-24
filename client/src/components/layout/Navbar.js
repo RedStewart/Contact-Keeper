@@ -42,7 +42,7 @@ const Navbar = ({ title, icon }) => {
   return (
     <div className='navbar bg-primary'>
       <h1>
-        <i className={icon} />
+        <i className={icon} style={{ marginRight: '0.5rem' }} />
         {title}
       </h1>
       <ul>{isAuthenticated ? authLinks : guestLinks}</ul>
